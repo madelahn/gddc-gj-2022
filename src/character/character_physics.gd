@@ -32,7 +32,7 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump
 	
-	if Input.is_action_pressed("shoot") and get_node("character_weapon").has_bullets():
+	if Input.is_action_pressed("attack") and not is_on_floor():
 		velocity.y = 0
 	
 	
