@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Seatbelts - Ask DNA.mp3-23f9d07c2cd05e5996c7efefbae9a9c5.mp3str"
+
+[deps]
+
+source_file="res://musicplayer/Seatbelts - Ask DNA.mp3"
+dest_files=[ "res://.import/Seatbelts - Ask DNA.mp3-23f9d07c2cd05e5996c7efefbae9a9c5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
