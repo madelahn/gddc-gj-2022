@@ -10,15 +10,20 @@ onready var anim1 = $Left_Weapon_Ani
 onready var anim2 = $Down_Weapon_Ani
 
 
+
+
 # Called when the node enters the scene tree for the first time.
 func attack():
-	anim.play("stab")
+	if not (anim2.is_playing() or anim1.is_playing()):
+		anim.play("stab")
 
 func attack1():
-	anim1.play("stab2")
+	if not (anim2.is_playing() or anim.is_playing()):
+		anim1.play("stab2")
 	
 func attack2():
-	anim2.play("stab3")
+	if not (anim.is_playing() or anim1.is_playing()):
+		anim2.play("stab3")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

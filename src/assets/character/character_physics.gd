@@ -36,13 +36,22 @@ func _physics_process(_delta):
 		animatedSprite.play("jump")
 	elif not is_on_floor() and velocity.y > 0:
 		animatedSprite.play("fall")
+		
+	if is_on_wall() and (Input.is_action_pressed("move_right") 
+	or Input.is_action_pressed("move_left")):
+		velocity.y = velocity.y * 0.8
+		animatedSprite.play("slide")
 	
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	velocity.x = lerp(velocity.x, 0, 0.2)
 	
-	if velocity.x < 0:
+	if is_on_wall() and Input.is_action_pressed("move_right"):
+		animatedSprite.flip_h = false
+	elif is_on_wall() and Input.is_action_pressed("move_left"):
+		animatedSprite.flip_h = true
+	elif velocity.x < 0:
 		animatedSprite.flip_h = true
 	else:
 		animatedSprite.flip_h = false

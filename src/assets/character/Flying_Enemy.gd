@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-var enemy_hp = 5
+var enemy_hp = 2
 
-onready var animatedSprite = $Zombie_Hurt_Animation
+onready var animatedSprite = $Bird_Hurt_Animation
 
 func handle_hit():
 	if enemy_hp > 1:
@@ -15,7 +15,7 @@ func handle_hit():
 onready var player = get_node("/root/World/Character")
 		
 var velocity = Vector2(0,0)
-const max_speed = 55
+const max_speed = 100
 const gravity = 10
 const jump = -200
 	
@@ -23,8 +23,6 @@ const jump = -200
 func _physics_process(_delta):
 	if player:
 		var direction = (player.position - position).normalized()
-		if not is_on_floor():
-			direction.y += gravity
 			
 		move_and_slide(direction * max_speed)
 		
