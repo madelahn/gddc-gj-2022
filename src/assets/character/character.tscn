@@ -1,0 +1,390 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://assets/art/randomguy.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://assets/Environment/block.tres" type="TileSet" id=2]
+[ext_resource path="res://assets/character/character_physics.gd" type="Script" id=3]
+[ext_resource path="res://assets/Enemies/Enemy.gd" type="Script" id=4]
+[ext_resource path="res://assets/character/Weapon.gd" type="Script" id=5]
+[ext_resource path="res://assets/art/pipes.png" type="Texture" id=6]
+[ext_resource path="res://assets/art/108-1086909_zombies-peashooter-pixel-minecraft-plants-vs-zombies-pixel.png" type="Texture" id=7]
+[ext_resource path="res://assets/character/Flying_Enemy.gd" type="Script" id=8]
+[ext_resource path="res://assets/character/World.gd" type="Script" id=9]
+
+[sub_resource type="CapsuleShape2D" id=12]
+radius = 4.186
+height = 9.628
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 3.0
+height = 6.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "stab"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("WeaponS_R:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 9.5, 0 ), Vector2( 15, 0 ), Vector2( 9.5, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Collision_R:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("WeaponS_R:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -131.0, 55.7, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Collision_R:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 9.5, 0 ), Vector2( 15, 0 ), Vector2( 9.5, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Collision_R:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 55.7, 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("WeaponS_R:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "stab2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Collision_L:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -9.5, 0 ), Vector2( -15, 0 ), Vector2( -9.5, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Collision_L:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -55.7, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Collision_L:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("WeaponS_L:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -9.5, 0 ), Vector2( -15, 0 ), Vector2( -9.5, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("WeaponS_L:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 131.0, -55.7, 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("WeaponS_L:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "stab3"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("WeaponS_D:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 150.0, 205.0, 205.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Collision_D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("WeaponS_D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Getting Hit"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:collision_layer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 1 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("BirdSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.764706, 0.0901961, 0.0901961, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 4, 3 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 14 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("ZombieSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.764706, 0.0901961, 0.0901961, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="World" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 8, 8 )
+show_collision = true
+compatibility_mode = true
+collision_layer = 3
+collision_mask = 3
+format = 1
+tile_data = PoolIntArray( -589836, 0, 0, -524300, 0, 0, -458764, 0, 0, -393228, 0, 0, -327692, 0, 0, -262156, 0, 0, -196620, 0, 0, -131084, 0, 0, -65548, 0, 0, -12, 0, 0, 65524, 0, 0, 131060, 0, 0, 196596, 0, 0, 262132, 0, 0, 327668, 0, 0, 393204, 0, 0, 458740, 0, 0, 524275, 0, 0, 524276, 0, 0, 458778, -1073741824, 0, 589811, 0, 0, 524314, -1073741824, 0, 655347, 0, 0, 655348, 0, 0, 589850, -1073741824, 0, 720884, 0, 0, 655385, 0, 0, 655386, -1073741824, 0, 786420, 0, 0, 720921, -1610612736, 0, 720922, -1073741824, 0, 786457, -1610612736, 0, 786458, -1073741824, 0, 917492, 0, 0, 851993, -1610612736, 0, 983028, 0, 0, 917529, -1610612736, 0, 1048564, 0, 0, 1048566, 0, 0, 983065, -1610612736, 0, 1114100, 0, 0, 1114103, 0, 0, 1114104, 0, 0, 1048601, -1610612736, 0, 1179636, 0, 0, 1179640, 0, 0, 1114137, -1610612736, 0, 1245172, 0, 0, 1245177, 0, 0, 1179673, -1610612736, 0, 1179674, -1610612736, 0, 1310707, 0, 0, 1310713, 0, 0, 1245210, -1610612736, 0, 1376243, 0, 0, 1376249, 0, 0, 1376250, 0, 0, 1310746, -1610612736, 0, 1441779, 0, 0, 1441786, 0, 0, 1441787, 0, 0, 1441788, 0, 0, 1376256, 0, 0, 1376257, 0, 0, 1376258, 0, 0, 1376259, 0, 0, 1376260, 0, 0, 1376261, 0, 0, 1376262, 0, 0, 1376263, 0, 0, 1376264, 0, 0, 1376265, 0, 0, 1376266, 0, 0, 1376282, -1610612736, 0, 1376283, -1610612736, 0, 1507315, 0, 0, 1441792, 0, 0, 1441802, 0, 0, 1441803, 0, 0, 1441819, -1610612736, 0, 1572851, 0, 0, 1507340, 0, 0, 1507341, 0, 0, 1507342, 0, 0, 1507355, 1610612736, 0, 1638387, 0, 0, 1572891, 1610612736, 0, 1703923, 0, 0, 1638427, 1610612736, 0, 1769459, 0, 0, 1703962, -1073741824, 0, 1834995, 0, 0, 1834996, 0, 0, 1769498, -1073741824, 0, 1900532, 0, 0, 1835034, -1073741824, 0, 1966068, 0, 0, 1966069, 0, 0, 1900570, -1073741824, 0, 2031605, 0, 0, 1966106, -1073741824, 0, 2097141, 0, 0, 2031642, -1073741824, 0, 2162677, 0, 0, 2097178, -1073741824, 0, 2228213, 0, 0, 2162714, -1073741824, 0, 2293749, 0, 0, 2228250, -1073741824, 0, 2359285, 0, 0, 2293786, -1073741824, 0, 2424821, 0, 0, 2359321, -1073741824, 0, 2359322, -1073741824, 0, 2490357, 0, 0, 2424857, -1073741824, 0, 2555893, 0, 0, 2490391, -1073741824, 0, 2490392, -1073741824, 0, 2621429, 0, 0, 2555921, -1073741824, 0, 2555922, -1073741824, 0, 2555923, -1073741824, 0, 2555924, -1073741824, 0, 2555925, -1073741824, 0, 2555926, -1073741824, 0, 2555927, -1073741824, 0, 2555928, -1073741824, 0, 2686965, 0, 0, 2621455, -1073741824, 0, 2621456, -1073741824, 0, 2752501, 0, 0, 2686989, -1073741824, 0, 2686990, -1073741824, 0, 2818037, 0, 0, 2752523, -1073741824, 0, 2752524, -1073741824, 0, 2883573, 0, 0, 2818057, -1073741824, 0, 2818058, -1073741824, 0, 2949108, 0, 0, 2883592, -1073741824, 0, 3014644, 0, 0, 2949126, -1073741824, 0, 2949127, -1073741824, 0, 3080180, 0, 0, 3014661, -1073741824, 0, 3145715, 0, 0, 3080196, -1073741824, 0, 3211251, 0, 0, 3145731, -1073741824, 0, 3276787, 0, 0, 3211267, -1073741824, 0, 3342322, 0, 0, 3276803, -1073741824, 0, 3407858, 0, 0, 3342339, -1073741824, 0, 3473394, 0, 0, 3407876, -1073741824, 0, 3538930, 0, 0, 3473412, -1073741824, 0, 3604466, 0, 0, 3538948, -1073741824, 0, 3538949, -1073741824, 0, 3670002, 0, 0, 3604485, -1073741824, 0, 3604486, -1073741824, 0, 3604487, -1073741824, 0, 3735538, 0, 0, 3670023, -1073741824, 0, 3670024, -1073741824, 0, 3801074, 0, 0, 3735560, -1073741824, 0, 3735561, -1073741824, 0, 3866610, 0, 0, 3801097, -1073741824, 0, 3801098, -1073741824, 0, 3801099, -1073741824, 0, 3932146, 0, 0, 3866635, -1073741824, 0, 3866636, -1073741824, 0, 3997682, 0, 0, 3932172, -1073741824, 0, 4063218, 0, 0, 3997709, -1073741824, 0, 3997710, -1073741824, 0, 4128754, 0, 0, 4063246, -1073741824, 0, 4063247, -1073741824, 0, 4194290, 0, 0, 4194303, 0, 0, 4128768, 0, 0, 4128769, 0, 0, 4128783, -1073741824, 0, 4128784, -1073741824, 0, 4259826, 0, 0, 4259838, 0, 0, 4259839, 0, 0, 4194320, -1073741824, 0, 4194321, -1073741824, 0, 4325363, 0, 0, 4325373, 0, 0, 4325374, 0, 0, 4390900, 0, 0, 4390909, 0, 0, 4456437, 0, 0, 4456444, 0, 0, 4390930, -1073741824, 0, 4390931, -1073741824, 0, 4521974, 0, 0, 4521980, 0, 0, 4456468, -1073741824, 0, 4587511, 0, 0, 4587516, 0, 0, 4522005, -1073741824, 0, 4653047, 0, 0, 4653048, 0, 0, 4653052, 0, 0, 4587542, -1073741824, 0, 4718584, 0, 0, 4718588, 0, 0, 4653079, -1073741824, 0, 4784120, 0, 0, 4784123, 0, 0, 4718616, -1073741824, 0, 4718617, -1073741824, 0, 4849656, 0, 0, 4849659, 0, 0, 4784154, -1073741824, 0, 4915192, 0, 0, 4915195, 0, 0, 4849691, -1073741824, 0, 4980728, 0, 0, 4915227, -1073741824, 0, 5046264, 0, 0, 4980764, -1073741824, 0, 4980765, -1073741824, 0, 5111800, 0, 0, 5046302, -1073741824, 0, 5177336, 0, 0, 5111838, -1073741824, 0, 5242872, 0, 0, 5177375, -1073741824, 0, 5308408, 0, 0, 5242911, -1073741824, 0, 5242912, -1073741824, 0, 5373944, 0, 0, 5308448, -1073741824, 0, 5439480, 0, 0, 5373967, 0, 0, 5373985, -1073741824, 0, 5505015, 0, 0, 5439502, 0, 0, 5439522, -1073741824, 0, 5570551, 0, 0, 5505035, 0, 0, 5505036, 0, 0, 5505038, 0, 0, 5505058, -1073741824, 0, 5636087, 0, 0, 5570570, 0, 0, 5570571, 0, 0, 5570572, 0, 0, 5570574, 0, 0, 5570595, -1073741824, 0, 5701623, 0, 0, 5636106, 0, 0, 5636109, 0, 0, 5636110, 0, 0, 5636131, -1073741824, 0, 5767158, 0, 0, 5701641, 0, 0, 5701642, 0, 0, 5701646, 0, 0, 5701667, -1073741824, 0, 5832694, 0, 0, 5767169, 0, 0, 5767177, 0, 0, 5767182, 0, 0, 5767203, -1073741824, 0, 5898230, 0, 0, 5832705, 0, 0, 5832706, 0, 0, 5832712, 0, 0, 5832718, 0, 0, 5832739, -1073741824, 0, 5963766, 0, 0, 5898242, 0, 0, 5898243, 0, 0, 5898244, 0, 0, 5898245, 0, 0, 5898246, 0, 0, 5898247, 0, 0, 5898254, 0, 0, 5898275, -1073741824, 0, 6029301, 0, 0, 5963789, 0, 0, 5963810, -1073741824, 0, 6094837, 0, 0, 6029325, 0, 0, 6029346, -1073741824, 0, 6160372, 0, 0, 6094861, 0, 0, 6094882, -1073741824, 0, 6225908, 0, 0, 6160397, 0, 0, 6160417, -1073741824, 0, 6291444, 0, 0, 6225932, 0, 0, 6225933, 0, 0, 6225952, -1073741824, 0, 6356980, 0, 0, 6291468, 0, 0, 6291488, -1073741824, 0, 6422515, 0, 0, 6357005, 0, 0, 6357022, -1073741824, 0, 6357023, -1073741824, 0, 6488051, 0, 0, 6422541, 0, 0, 6422558, -1073741824, 0, 6553587, 0, 0, 6488078, 0, 0, 6619123, 0, 0, 6553615, 0, 0, 6553630, -1073741824, 0, 6684659, 0, 0, 6619152, 0, 0, 6619153, 0, 0, 6619166, -1073741824, 0, 6750195, 0, 0, 6684690, 0, 0, 6684702, -1073741824, 0, 6815730, 0, 0, 6750227, 0, 0, 6750238, -1073741824, 0, 6881267, 0, 0, 6815764, 0, 0, 6815774, -1073741824, 0, 6946803, 0, 0, 6881301, 0, 0, 6881310, -1073741824, 0, 7012339, 0, 0, 6946838, 0, 0, 6946846, -1073741824, 0, 7077876, 0, 0, 7012375, 0, 0, 7012382, -1073741824, 0, 7143412, 0, 0, 7077910, 0, 0, 7077918, -1073741824, 0, 7208948, 0, 0, 7208950, 0, 0, 7143446, 0, 0, 7143454, -1073741824, 0, 7274484, 0, 0, 7274487, 0, 0, 7208981, 0, 0, 7208990, -1073741824, 0, 7340020, 0, 0, 7340024, 0, 0, 7340025, 0, 0, 7340026, 0, 0, 7274516, 0, 0, 7274527, -1073741824, 0, 7405556, 0, 0, 7405563, 0, 0, 7405564, 0, 0, 7340051, 0, 0, 7340063, -1073741824, 0, 7471092, 0, 0, 7471100, 0, 0, 7405586, 0, 0, 7405599, -1073741824, 0, 7536628, 0, 0, 7536636, 0, 0, 7471121, 0, 0, 7471135, -1073741824, 0, 7602164, 0, 0, 7602173, 0, 0, 7536656, 0, 0, 7536671, -1073741824, 0, 7667700, 0, 0, 7667709, 0, 0, 7602190, 0, 0, 7602191, 0, 0, 7602207, -1073741824, 0, 7733236, 0, 0, 7733245, 0, 0, 7667725, 0, 0, 7667744, -1073741824, 0, 7798771, 0, 0, 7798781, 0, 0, 7733260, 0, 0, 7733280, -1073741824, 0, 7864306, 0, 0, 7864307, 0, 0, 7864317, 0, 0, 7864318, 0, 0, 7864319, 0, 0, 7798795, 0, 0, 7798816, -1073741824, 0, 7929841, 0, 0, 7929842, 0, 0, 7864330, 0, 0, 7864353, -1073741824, 0, 7995376, 0, 0, 7995377, 0, 0, 7929865, 0, 0, 7929889, -1073741824, 0, 8060912, 0, 0, 7995400, 0, 0, 7995425, -1073741824, 0, 8126448, 0, 0, 8060936, 0, 0, 8060962, -1073741824, 0, 8191984, 0, 0, 8126472, 0, 0, 8126498, -1073741824, 0, 8257519, 0, 0, 8192008, 0, 0, 8192034, -1073741824, 0, 8323055, 0, 0, 8257544, 0, 0, 8257570, -1073741824, 0, 8388591, 0, 0, 8323080, 0, 0, 8323106, -1073741824, 0, 8454127, 0, 0, 8388617, 0, 0, 8388642, -1073741824, 0, 8519664, 0, 0, 8454154, 0, 0, 8454178, -1073741824, 0, 8585200, 0, 0, 8585201, 0, 0, 8519690, 0, 0, 8519713, -1073741824, 0, 8650738, 0, 0, 8650739, 0, 0, 8585248, -1073741824, 0, 8585249, -1073741824, 0, 8650783, -1073741824, 0, 8650784, -1073741824, 0, 8716318, -1073741824, 0, 8781853, -1073741824, 0, 8847388, -1073741824, 0, 8847389, -1073741824, 0, 8912923, -1073741824, 0, 8912924, -1073741824, 0 )
+
+[node name="Character" type="KinematicBody2D" parent="." groups=["character"]]
+script = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="Character"]
+current = true
+zoom = Vector2( 0.372, 0.442 )
+smoothing_enabled = true
+smoothing_speed = 7.0
+
+[node name="CharacterSprite" type="AnimatedSprite" parent="Character"]
+position = Vector2( 0, -1.19209e-07 )
+scale = Vector2( 0.671875, 0.6875 )
+frames = ExtResource( 1 )
+animation = "run"
+frame = 3
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character"]
+shape = SubResource( 12 )
+
+[node name="Weapon" type="Area2D" parent="Character"]
+script = ExtResource( 5 )
+
+[node name="Collision_R" type="CollisionShape2D" parent="Character/Weapon"]
+visible = false
+position = Vector2( 9.5, 0 )
+shape = SubResource( 2 )
+disabled = true
+one_way_collision_margin = 0.0
+
+[node name="Collision_L" type="CollisionShape2D" parent="Character/Weapon"]
+visible = false
+position = Vector2( -9.5, 0 )
+shape = SubResource( 2 )
+disabled = true
+one_way_collision_margin = 0.0
+
+[node name="Collision_D" type="CollisionShape2D" parent="Character/Weapon"]
+position = Vector2( 0, 12.38 )
+rotation = 1.5708
+shape = SubResource( 2 )
+disabled = true
+one_way_collision_margin = 0.0
+
+[node name="WeaponS_R" type="Sprite" parent="Character/Weapon"]
+visible = false
+position = Vector2( 10, 1.93715e-07 )
+rotation = -2.28638
+scale = Vector2( 0.045, 0.03 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="WeaponS_L" type="Sprite" parent="Character/Weapon"]
+visible = false
+position = Vector2( -9.5, 0 )
+rotation = 2.28638
+scale = Vector2( 0.045, 0.03 )
+texture = ExtResource( 6 )
+centered = false
+offset = Vector2( -9.5, 4 )
+
+[node name="WeaponS_D" type="Sprite" parent="Character/Weapon"]
+visible = false
+rotation = 2.61799
+scale = Vector2( 0.045, 0.03 )
+texture = ExtResource( 6 )
+offset = Vector2( 0, -300 )
+
+[node name="Right_Weapon_Ani" type="AnimationPlayer" parent="Character/Weapon"]
+anims/stab = SubResource( 3 )
+
+[node name="Left_Weapon_Ani" type="AnimationPlayer" parent="Character/Weapon"]
+anims/stab2 = SubResource( 7 )
+
+[node name="Down_Weapon_Ani" type="AnimationPlayer" parent="Character/Weapon"]
+anims/stab3 = SubResource( 8 )
+
+[node name="Hurt" type="AnimationPlayer" parent="Character"]
+"anims/Getting Hit" = SubResource( 11 )
+
+[node name="Bird" type="KinematicBody2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="BirdSprite" type="Sprite" parent="Bird"]
+position = Vector2( -23, -6 )
+scale = Vector2( 0.00930232, 0.0063762 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="Bird_Hurt_Animation" type="AnimationPlayer" parent="Bird"]
+anims/hit = SubResource( 9 )
+
+[node name="BirdCollision" type="CollisionShape2D" parent="Bird"]
+position = Vector2( -23, -6 )
+shape = SubResource( 10 )
+
+[node name="Zombie" type="KinematicBody2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="ZombieSprite" type="Sprite" parent="Zombie"]
+position = Vector2( 23, -5 )
+scale = Vector2( 0.0223837, 0.0296227 )
+texture = ExtResource( 7 )
+
+[node name="ZombieCollision" type="CollisionShape2D" parent="Zombie"]
+position = Vector2( 23, -5 )
+shape = SubResource( 4 )
+
+[node name="Zombie_Hurt_Animation" type="AnimationPlayer" parent="Zombie"]
+anims/hit = SubResource( 6 )
+
+[connection signal="body_entered" from="Character/Weapon" to="Character/Weapon" method="_on_Weapon_body_entered"]
