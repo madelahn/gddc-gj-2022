@@ -5,11 +5,20 @@ extends Area2D
 # var a = 2
 # var b = "text"
 
-onready var anim = $AnimationPlayer
+onready var anim = $Right_Weapon_Ani
+onready var anim1 = $Left_Weapon_Ani
+onready var anim2 = $Down_Weapon_Ani
+
 
 # Called when the node enters the scene tree for the first time.
 func attack():
 	anim.play("stab")
+
+func attack1():
+	anim1.play("stab2")
+	
+func attack2():
+	anim2.play("stab3")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

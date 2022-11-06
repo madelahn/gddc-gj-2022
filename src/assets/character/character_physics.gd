@@ -27,9 +27,14 @@ func _physics_process(_delta):
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump
+		animatedSprite.play("jump")
 	
 	
-	if not is_on_floor():
+	if velocity.y < 0 and velocity.y > -100:
+		animatedSprite.play("flip")
+	elif not is_on_floor() and velocity.y <= 0:
+		animatedSprite.play("jump")
+	elif not is_on_floor() and velocity.y > 0:
 		animatedSprite.play("fall")
 	
 	
@@ -48,6 +53,22 @@ onready var weapon = $Weapon
 func _unhandled_input(event:InputEvent) -> void:
 	if event.is_action_pressed("attack_right"):
 		weapon.attack()
+	elif event.is_action_pressed("attack_left"):
+		weapon.attack1()
+	elif event.is_action_pressed("attack_down"):
+		weapon.attack2()
+		
+signal death_screen
+
+func damage():
+	if hp > 1:
+		hp -= 1
+	else:
+		queue_free()
+		
+func die():
+	print("yo mama")
+
 		
 func handle_hit():
 	if hp > 1:
@@ -60,3 +81,12 @@ func handle_hit():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Enemy_body_entered(body):
+	print("pee")
+	if hp > 1:
+		hp -= 1
+	else:
+		print("poop")
+	

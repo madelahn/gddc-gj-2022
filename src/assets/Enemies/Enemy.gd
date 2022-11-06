@@ -11,8 +11,7 @@ func handle_hit():
 onready var player = get_node("/root/World/Character")
 		
 var velocity = Vector2(0,0)
-const speed_increase = 18
-const max_speed = 20
+const max_speed = 55
 const gravity = 10
 const jump = -200
 	
@@ -28,4 +27,4 @@ func _physics_process(_delta):
 		for i in get_slide_count():
 			var collision = get_slide_collision(i)
 			if collision.collider.name == "Character":
-				print("You died")
+				player.damage
