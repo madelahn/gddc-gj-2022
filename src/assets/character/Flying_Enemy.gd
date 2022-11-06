@@ -16,8 +16,6 @@ onready var player = get_node("/root/World/Character")
 		
 var velocity = Vector2(0,0)
 const max_speed = 100
-const gravity = 10
-const jump = -200
 	
 
 func _physics_process(_delta):

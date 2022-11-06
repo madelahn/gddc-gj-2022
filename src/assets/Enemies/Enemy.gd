@@ -2,11 +2,11 @@ extends KinematicBody2D
 
 var enemy_hp = 5
 
-onready var animatedSprite = $Zombie_Hurt_Animation
+onready var Zombie_hurt = $Zombie_Hurt_Animation
 
 func handle_hit():
 	if enemy_hp > 1:
-		animatedSprite.play("hit")
+		Zombie_hurt.play("hit")
 		enemy_hp -= 1
 	
 	else:
@@ -25,6 +25,8 @@ func _physics_process(_delta):
 		var direction = (player.position - position).normalized()
 		if not is_on_floor():
 			direction.y += gravity
+		elif is_on_floor() and is_on_wall():
+			direction.y = jump
 			
 		move_and_slide(direction * max_speed)
 		

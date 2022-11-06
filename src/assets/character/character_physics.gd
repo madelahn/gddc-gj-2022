@@ -28,8 +28,13 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump
 		animatedSprite.play("jump")
-	
-	
+	elif is_on_wall() and Input.is_action_pressed("move_right") and Input.is_action_just_pressed("jump"):
+		velocity.y = jump
+		velocity.x = -jump
+	elif is_on_wall() and Input.is_action_pressed("move_left") and Input.is_action_just_pressed("jump"):
+		velocity.y = jump
+		velocity.x = jump
+		
 	if velocity.y < 0 and velocity.y > -100:
 		animatedSprite.play("flip")
 	elif not is_on_floor() and velocity.y <= 0:
@@ -55,6 +60,16 @@ func _physics_process(_delta):
 		animatedSprite.flip_h = true
 	else:
 		animatedSprite.flip_h = false
+		
+func handle_hit():
+	velocity.y = 50
+	animatedSprite.play("hit")
+	$Hurt.play("Getting Hit")
+	
+	if hp > 1:
+		hp -= 1
+	else:
+		queue_free()
 	
 onready var weapon = $Weapon
 
@@ -74,28 +89,11 @@ func damage():
 		hp -= 1
 	else:
 		queue_free()
-		
-func die():
-	print("yo mama")
+
+
 
 		
-func handle_hit():
-	if hp > 1:
-		hp -= 1
-	else:
-		print("You Died")
+
 	
 	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-func _on_Enemy_body_entered(body):
-	print("pee")
-	if hp > 1:
-		hp -= 1
-	else:
-		print("poop")
 	
