@@ -1,9 +1,6 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var timer = Timer.new()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -22,4 +19,15 @@ func _on_SettingsButton_pressed():
 
 
 func _on_StartButton_pressed():
-	pass
+	timer.connect("timeout", self, "_changeScene")
+	timer.wait_time = 2
+	timer.one_shot = true
+	add_child(timer)
+	
+	MusicPlayer.fade_out()
+	timer.start()
+	
+
+
+func _changeScene():
+	get_tree().change_scene("res://cutscenes/intro-scene.tscn")
